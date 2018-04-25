@@ -103,28 +103,31 @@ public class Parse
            token = getToken(); // get the first token for the condition for example 4 > 5, this will get you 4
            if(cond == true) // if the condition is true, condition cases mentioned in the parseCondition
            {
-             if(execute == true) //if you want to execute the sta
+             if(execute == true) //if you want to execute, the execute flag is set to true.
              {
-               parseStmt(token,true); // if the condition is true
+               parseStmt(token,true);// parse the statement as well as execute it.
                //System.out.println("hello");
              }
-             else
+             else               // if the execution is flase, we parse the statement but not execute it.
              {
                parseStmt(token,false);
              }
            }
            else
            {
-             parseStmt(token,false);
+             parseStmt(token,false); // if the boolean condition is false again we just parse it but, we dont execute it.
            }
-           token = getToken();
-           if(token.equals("else"))
+           token = getToken(); // get the next token.
+           if(token.equals("else")) //check if the token is else
            {
-             token = getToken();
+             token = getToken(); // get the token next to else
              //System.out.println(token);
-             if(cond == true)
+             if(cond == true) //check if th boolean condition is true
              {
-                parseStmt(token,false);
+               parseStmt(token,false);
+              // if(execute == true)
+               //{}
+               //}
              }
              else
              {
@@ -202,6 +205,30 @@ public class Parse
         }
         else
             reportError(token);
+    }
+
+    private int getIndex(String token)
+    {
+      int index = getHash(token);
+      String [] vars_id = new String[256];
+      int [] vals_id = new int[256];
+
+      while(vars_id[index].length() != 0 && vars_id[index].equals(token))
+        index = (index + 1) % 256;
+
+      vars_id[index] = token;
+      return index;
+    }
+
+    private int getHash(String token)
+    {
+      int val = 0;
+      String [] vars_id = new String[256];
+      int [] vals_id = new int[256];
+
+      for (int i = 0; i < token.length(); i++)
+        val += token.charAt(i) * (i+1);
+      return val;
     }
 
     private boolean parseCondition(String token)
@@ -462,6 +489,7 @@ public class Parse
         {
             line = scan.nextLine();
             line = skipLeadingBlanks(line);
+
         }
 
         // grab out actual token

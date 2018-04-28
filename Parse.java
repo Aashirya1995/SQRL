@@ -623,7 +623,7 @@ public class Parse
 
     {
 
-      if (token.charAt(0) != '_' &&  !isAlpha(token.charAt(0)))
+      if (!isAlpha(token.charAt(0)) && token.charAt(0) != '_' )
        {
 
           return false;
@@ -635,7 +635,7 @@ public class Parse
           for(int x = 0; x < token.length(); x++)
           {
 
-              if (isDigit(token.charAt(x)) ||  !(isAlpha(token.charAt(x)) || token.charAt(x) == '_'))
+              if (!(isAlpha(token.charAt(x)) ||  isDigit(token.charAt(x)) || token.charAt(x) == '_'))
                {
 
                   return false;

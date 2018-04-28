@@ -9,11 +9,8 @@ public class Parse
 {
 
     private String line;
-
     private Scanner scan;
-
     private int[] vars;
-
     private String[] vars_id;
 
     // constructor
@@ -178,8 +175,6 @@ public class Parse
 
           token = getToken(); // get the next token after
 
-           // the boolean condition must be taken into the parse condition
-
            boolean cond = parseCondition(token); // initializing a boolean condition for the if else to work.
 
            token = getToken(); // get the first token for the condition for example 4 > 5, this will get you 4
@@ -324,10 +319,6 @@ public class Parse
 
             {
 
-              //if(execute == true)
-
-              //{
-
                 storeVar(variableToken, i);
 
                 line = currentLine;
@@ -341,7 +332,6 @@ public class Parse
                 if(execute == false){
                   break;
                 }
-              //}
             }
 
             storeVar(variableToken, start);
@@ -374,8 +364,8 @@ public class Parse
 
             int a = parseExpr(token);
             if(execute == true){
-              storeVar(value, a);
-            }     //storeVar takes in string token and an int value
+              storeVar(value, a);     //storeVar takes in string token and an int value
+            }
 
           }
 
@@ -575,7 +565,6 @@ public class Parse
 
       }
       int a = getIndex(token);
-      //vars_id[a] = token;
       return vars[a];
     }
 
@@ -585,9 +574,6 @@ public class Parse
 
       int index = getHash(token);
 
-      //String [] vars_id = new String[256];
-
-      //int [] vals_id = new int[256];
 
       while(vars_id[index].length() != 0 && !vars_id[index].equals(token))
 
@@ -604,10 +590,6 @@ public class Parse
     {
 
       int val = 0;
-
-      //String [] vars_id = new String[256];
-
-      //int [] vals_id = new int[256];
 
       for (int i = 0; i < token.length(); i++)
 
@@ -659,9 +641,6 @@ public class Parse
       int b;
 
       b = getIndex(token);
-
-      //vars_id[b] = token;
-
       vars[b] = val;
 
 

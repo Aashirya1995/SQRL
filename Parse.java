@@ -301,6 +301,7 @@ public class Parse
       int a = getIndex(token);
       return vars[a];
     }
+
     private int getIndex(String token)
     {
       int index = getHash(token);
